@@ -1,0 +1,6 @@
+{
+    "host":"localhost",
+    "dbname":"fsbase",
+    "dbusername":"root",
+    "dbpwd":"123456"
+}
