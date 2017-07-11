@@ -86,6 +86,7 @@ func Init() {
 
 	models := tables
 	for _, modelName := range models {
+		//创建每个表的structs
 		res, err := db.Prepare("desc " + modelName)
 
 		check(err)
