@@ -10,7 +10,8 @@ import (
 func InitRouter() http.Handler {
 	router := gin.Default()
 	// var abc = controllers
-	controllers.RegistermemberRoutes(router)
-	controllers.RegistermembillRoutes(router)
+	controllers.Registercjgs_zdRoutes(router)
+	controllers.Registercrgy_kzRoutes(router)
+	controllers.RegistergdxmRoutes(router)
 	return router
 }
