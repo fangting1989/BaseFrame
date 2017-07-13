@@ -11,7 +11,7 @@ import (
 func RegistergdxmRoutes(route *gin.Engine) {
 	gdxmController := route.Group("gdxmController")
 	{
-		gdxmController.GET("/insert", gdxmInsert)
+		gdxmController.POST("/insert", gdxmInsert)
 		gdxmController.GET("/update", gdxmUpdate)
 		gdxmController.GET("/del", gdxmDel)
 		gdxmController.GET("/find", gdxmFind)
@@ -20,10 +20,15 @@ func RegistergdxmRoutes(route *gin.Engine) {
 
 /*对象查询*/
 func gdxmFind(c *gin.Context) {
-
+	var pageobject models.Pageobject
 	var gdxm models.Gdxm
-	if c.BindJSON(&gdxm) == nil {
-		c.JSON(http.StatusOK, gdxm)
+	if c.Bind(&gdxm) == nil {
+		if c.Bind(&pageobject) == nil {
+			c.JSON(http.StatusOK, pageobject)
+		} else {
+			c.JSON(http.StatusOK, gdxm)
+		}
+
 	} else {
 		c.JSON(http.StatusOK, gin.H{"status": "unauthorized"})
 	}
@@ -37,9 +42,14 @@ func gdxmFind(c *gin.Context) {
 /*对象插入*/
 func gdxmInsert(c *gin.Context) {
 	//insert
-	c.JSON(200, gin.H{
-		"message": "gdxmInsert",
-	})
+	var gdxm models.Gdxm
+	// if c.Bind(&gdxm) == nil { BindJSON
+	if c.BindJSON(&gdxm) == nil {
+		c.JSON(http.StatusOK, gdxm)
+
+	} else {
+		c.JSON(http.StatusOK, gin.H{"status": "unauthorized"})
+	}
 }
 
 /*对象更新*/
