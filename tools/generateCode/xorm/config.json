@@ -1,6 +1,9 @@
 {
-    "host":"localhost",
-    "dbname":"fsbase",
-    "dbusername":"root",
-    "dbpwd":"123456"
+    "mysql":{
+        "host":"192.168.2.66",
+        "username":"root",
+        "userpwd":"123456",
+        "database":"landanalysis",
+        "port":3306
+    }
 }

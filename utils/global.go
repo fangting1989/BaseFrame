@@ -2,25 +2,32 @@ package utils
 
 import (
 	"fmt"
+	"net/http"
 	"reflect"
+	"strconv"
+
+	"github.com/gin-gonic/gin"
+	"github.com/olebedev/config"
 )
 
 type Pageobject struct {
-	Pagenum  int
-	Pagesize int
+	Pagenum  int `json:"pagenum"`
+	Pagesize int `json:"pagesize"`
 }
 
 type ResultList struct {
-	Errid       int
-	Errmsg      string
-	Data        interface{}
-	Recordcount int64
+	Errid       int         `json:"errid"`
+	Errmsg      string      `json:"errmsg"`
+	Data        interface{} `json:"data"`
+	Recordcount int64       `json:"recordcount"`
+	Token       string      `json:"token"`
 }
 
 type ResultObject struct {
-	Errid  int
-	Errmsg string
-	Data   interface{}
+	Errid  int         `json:"errid"`
+	Errmsg string      `json:"errmsg"`
+	Data   interface{} `json:"data"`
+	Token  string      `json:"token"`
 }
 
 func StructInfo(obj interface{}) string {
@@ -47,8 +54,85 @@ func StructInfo(obj interface{}) string {
 	return "123"
 }
 
-func Check(e error) {
+func CheckError(e error) {
 	if e != nil {
+		LogInfo(e.Error(), "error")
 		panic(e)
+	}
+}
+
+func CheckWebError(e error, c *gin.Context) {
+	if e != nil {
+		LogInfo(e.Error(), "error")
+		c.JSON(http.StatusOK, ResultList{-1, e.Error(), nil, 0, ContextToken(c)})
+		panic(e)
+	}
+}
+
+func StartPort() string {
+	var startport = "8000"
+	cfg, err := config.ParseJsonFile("./config/appconfig.json")
+	if err != nil {
+		return startport
+	}
+	newstartport, err := cfg.String("app.startport")
+	if err != nil {
+		return startport
+	} else {
+		return newstartport
+	}
+}
+
+func JwtMode() bool {
+	cfg, err := config.ParseJsonFile("./config/appconfig.json")
+	if err != nil {
+		return false
+	}
+	nmode, err := cfg.String("app.jwtmode")
+	if err != nil {
+		return false
+	} else {
+		b, err := strconv.ParseBool(nmode)
+		if err != nil {
+			return false
+		} else {
+			return b
+		}
+	}
+}
+
+func ConfigIntData(name string) int {
+	cfg, err := config.ParseJsonFile("./config/appconfig.json")
+	if err != nil {
+		return 0
+	}
+	nmode, err := cfg.String(name)
+	if err != nil {
+		return 0
+	} else {
+		b, err := strconv.Atoi(nmode)
+		if err != nil {
+			return 0
+		} else {
+			return b
+		}
+	}
+}
+
+func ContextKeyValue(keyName string, c *gin.Context) string {
+	val, has := c.Get(keyName)
+	if !has {
+		return ""
+	} else {
+		return val.(string)
+	}
+}
+
+func ContextToken(c *gin.Context) string {
+	val, has := c.Get("TokenString")
+	if !has {
+		return ""
+	} else {
+		return val.(string)
 	}
 }

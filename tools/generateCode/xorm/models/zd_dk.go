@@ -2,9 +2,8 @@ package models
 import (
 		"time"
 		)
-type zd_dk struct {
-  ZD_DK_ID  	int64     	`xorm:"not nullBIGINT(20)"`
-  JZDSX_GUID	string    	`xorm:"VARCHAR(50)"`
+type Zd_dk struct {
+  JZDSX_GUID	int64     	`xorm:" not null  pk BIGINT(20)"`
   ZD_GUID   	string    	`xorm:"VARCHAR(50)"`
   DKBH      	string    	`xorm:"VARCHAR(50)"`
   DKMC      	string    	`xorm:"VARCHAR(100)"`

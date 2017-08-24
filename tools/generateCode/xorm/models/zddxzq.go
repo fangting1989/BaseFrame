@@ -2,8 +2,8 @@ package models
 import (
 		"time"
 		)
-type zddxzq struct {
-  ZDDXZQ_ID 	int64     	`xorm:"not nullBIGINT(20)"`
+type Zddxzq struct {
+  ZDDXZQ_ID 	int64     	`xorm:" not null  pk BIGINT(20)"`
   ZDDXZQ_GUID	string    	`xorm:"VARCHAR(50)"`
   ZD_GUID   	string    	`xorm:"VARCHAR(50)"`
   GD_GUID   	string    	`xorm:"VARCHAR(50)"`

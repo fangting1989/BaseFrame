@@ -7,11 +7,15 @@ import (
 	"github.com/gin-gonic/gin"
 )
 
-func InitRouter() http.Handler {
-	router := gin.Default()
-	// var abc = controllers
-	controllers.Registercjgs_zdRoutes(router)
-	controllers.Registercrgy_kzRoutes(router)
-	controllers.RegistergdxmRoutes(router)
-	return router
+var Router *gin.Engine
+
+func InitRouter(r *gin.Engine) http.Handler {
+	controllers.InitControllers()
+	// utils.RouterBus.Publish("router:register", r)
+	controllers.RegistergdxmRoutes(r)
+	// r.ServeHTTP(w, req){
+	// 	fmt.Println("--request")
+	// }
+
+	return r
 }

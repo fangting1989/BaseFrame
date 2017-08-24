@@ -1,0 +1,13 @@
+{
+    "app":{
+        "startport":8000,
+        "jwtmode":false,
+        "tokenExpires":5
+    },
+    "mysql":{
+        "host":"192.168.2.66:3306",
+        "username":"root",
+        "userpwd":"123456",
+        "database":"landanalysis"
+    }
+}
