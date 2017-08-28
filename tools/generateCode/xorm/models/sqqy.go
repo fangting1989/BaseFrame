@@ -1,7 +1,7 @@
 package models
 import (
-		"time"
-		)
+"time"
+)
 type Sqqy struct {
   SQQY_ID   	int64     	`xorm:" not null  pk BIGINT(20)"`
   Company_ID	string    	`xorm:"VARCHAR(100)"`

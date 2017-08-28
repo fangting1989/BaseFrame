@@ -1,7 +1,7 @@
 package models
 import (
-		"time"
-		)
+"time"
+)
 type Crgy_kz struct {
   CRKZ_GUID 	string    	`xorm:" not null  pk VARCHAR(100)"`
   GD_GUID   	string    	`xorm:"VARCHAR(100)"`
@@ -59,8 +59,8 @@ type Crgy_kz struct {
   GYGG_ZD_GUID	string    	`xorm:"VARCHAR(100)"`
   ZF_JSY    	float64   	`xorm:"DECIMAL(18,4)"`
   PT_FY     	float64   	`xorm:"DECIMAL(18,4)"`
-  BC_TK     	          	`xorm:"LONGTEXT"`   
-  WGGZD_SM  	          	`xorm:"LONGTEXT"`   
+  BC_TK     	string    	`xorm:"LONGTEXT"`   
+  WGGZD_SM  	string    	`xorm:"LONGTEXT"`   
   GYGG_ZDBH 	string    	`xorm:"VARCHAR(255)"`
   SRR_FS    	float64   	`xorm:"DECIMAL(10,0)"`
   CRR_FS    	float64   	`xorm:"DECIMAL(10,0)"`

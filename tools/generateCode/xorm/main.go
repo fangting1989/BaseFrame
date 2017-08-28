@@ -24,19 +24,21 @@ func main() {
 
 func generateStructs() {
 	FieldTypes = map[string]string{
-		"bigint":    "int64",
-		"int":       "int",
-		"tinyint":   "int",
-		"smallint":  "int",
-		"char":      "string",
-		"varchar":   "string",
-		"text":      "string",
-		"blob":      "[]uint8",
-		"date":      "time.Time",
-		"datetime":  "time.Time",
-		"timestamp": "time.Time",
-		"decimal":   "float64",
-		"bit":       "uint64",
+		"bigint":     "int64",
+		"int":        "int",
+		"tinyint":    "int",
+		"smallint":   "int",
+		"char":       "string",
+		"varchar":    "string",
+		"text":       "string",
+		"blob":       "[]uint8",
+		"date":       "time.Time",
+		"datetime":   "time.Time",
+		"timestamp":  "time.Time",
+		"decimal":    "float64",
+		"bit":        "uint64",
+		"longtext":   "string",
+		"mediumtext": "string",
 	}
 	Init()
 }
@@ -99,13 +101,9 @@ func Init() {
 		f, err := os.Create("models/" + newMname + ".go")
 		check(err)
 		modelName = strings.Title(modelName)
-
-		f.WriteString(`package models
-import (
-		"time"
-		)
-type ` + strFirstToUpper(newMname) + ` struct {
-`)
+		var modelstring = ""
+		var timeflag = false
+		modelstring = modelstring + `type ` + strFirstToUpper(newMname) + ` struct {` + "\n"
 		for qry.Next() {
 			qry.Scan(&Field, &Type, &Null, &Key, &DefaultValue, &ExtraValue)
 			SourceType := Type
@@ -119,6 +117,11 @@ type ` + strFirstToUpper(newMname) + ` struct {
 			fmt.Printf("Field=%s, Type=%s, Null=%s, Key=%s, DefaultValue=%s, ExtraValue=%s \n", Field, Type, Null, Key, DefaultValue, ExtraValue)
 			name := Title
 			tp := FieldTypes[Type]
+			mlog.Info(tp)
+			mlog.Info(Type)
+			if tp == "time.Time" {
+				timeflag = true
+			}
 			sql := "`xorm:\""
 			if Null == "NO" {
 				sql += " not null "
@@ -130,9 +133,16 @@ type ` + strFirstToUpper(newMname) + ` struct {
 
 			sql += "\"`"
 			line := fmt.Sprintf("  %-10s\t%-10s\t%-20s", name, tp, sql)
-			f.WriteString(line + "\n")
+			modelstring += line + "\n"
+			//f.WriteString(line + "\n")
 			Field, Type, Null, Key, DefaultValue, ExtraValue = "", "", "", "", "", ""
 		}
+		if timeflag {
+			modelstring = `package models` + "\n" + `import (` + "\n" + `"time"` + "\n" + `)` + "\n" + modelstring
+		} else {
+			modelstring = `package models` + "\n" + modelstring
+		}
+		f.WriteString(modelstring)
 		f.WriteString("}")
 		res.Close()
 		qry.Close()
@@ -173,7 +183,7 @@ type ` + strFirstToUpper(newMname) + ` struct {
 
 		}
 
-		//创建文件内容
+		//创建文件内容 "github.com/go-xorm/xorm"
 		f.WriteString(`package controllers
 		
 import (
@@ -181,7 +191,6 @@ import (
 	"../models"
 	"../utils"
 	"github.com/gin-gonic/gin"
-	"github.com/go-xorm/xorm"
 	_ "github.com/jinzhu/gorm/dialects/mysql"
 )
 
@@ -246,7 +255,7 @@ func ` + newCname + `Update(c *gin.Context) {
 	var ` + newCname + ` models.` + strFirstToUpper(newCname) +
 			`
 	if c.BindJSON(&` + newCname + `) == nil {
-		affected, err := engine.Id(` + newCname + `.` + Pr + `).Update(` + newCname + `)
+		affected, err := engine.Id(` + newCname + `.` + strings.Title(Pr) + `).Update(` + newCname + `)
 		utils.CheckWebError(err, c)
 		if affected > 0 {
 			c.JSON(http.StatusOK, &utils.ResultObject{1, "操作成功", ` + newCname + `, utils.ContextToken(c)})
@@ -264,7 +273,7 @@ func ` + newCname + `Del(c *gin.Context) {
 	var ` + newCname + ` models.` + strFirstToUpper(newCname) +
 			`
 	if c.Bind(&` + newCname + `) == nil {
-		affected, err := engine.Id(` + newCname + `.` + Pr + `).Delete(` + newCname + `)
+		affected, err := engine.Id(` + newCname + `.` + strings.Title(Pr) + `).Delete(` + newCname + `)
 		utils.CheckWebError(err, c)
 		if affected > 0 {
 			c.JSON(http.StatusOK, &utils.ResultObject{1, "操作成功", nil, utils.ContextToken(c)})

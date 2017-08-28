@@ -1,7 +1,7 @@
 package models
 import (
-		"time"
-		)
+"time"
+)
 type Enterprise struct {
   Enterprise_ID	int64     	`xorm:" not null  pk BIGINT(20)"`
   Logourl   	string    	`xorm:"VARCHAR(200)"`

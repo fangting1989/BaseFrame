@@ -1,7 +1,7 @@
 package models
 import (
-		"time"
-		)
+"time"
+)
 type Gdxm_info struct {
   GDXM_INFOID	int64     	`xorm:" not null  pk BIGINT(20)"`
   GD_GUID   	string    	`xorm:"VARCHAR(50)"`
@@ -33,4 +33,7 @@ type Gdxm_info struct {
   JGSJ      	time.Time 	`xorm:"DATE"`       
   DGSJ      	time.Time 	`xorm:"DATE"`       
   XZQ_DM    	string    	`xorm:"VARCHAR(255)"`
+  XZ_ZT     	float64   	`xorm:"DECIMAL(10,0)"`
+  ZBXZ      	string    	`xorm:"VARCHAR(100)"`
+  ZBYZ      	string    	`xorm:"VARCHAR(100)"`
 }

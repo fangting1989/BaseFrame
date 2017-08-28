@@ -1,7 +1,4 @@
 package models
-import (
-		"time"
-		)
 type Gfzb struct {
   GFZBID    	int64     	`xorm:" not null  pk BIGINT(20)"`
   Company_ID	int64     	`xorm:"BIGINT(20)"` 

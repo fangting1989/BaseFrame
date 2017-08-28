@@ -1,7 +1,4 @@
 package models
-import (
-		"time"
-		)
 type Zd_jzdzb struct {
   ZD_JZDZB_ID	int64     	`xorm:" not null  pk BIGINT(20)"`
   JZD_GUID  	string    	`xorm:"VARCHAR(50)"`

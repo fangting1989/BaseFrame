@@ -1,7 +1,7 @@
 package models
 import (
-		"time"
-		)
+"time"
+)
 type Cgqk struct {
   CGQKID    	int64     	`xorm:" not null  pk BIGINT(200)"`
   Company_ID	int64     	`xorm:"BIGINT(20)"` 

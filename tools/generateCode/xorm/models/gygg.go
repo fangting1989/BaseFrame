@@ -1,7 +1,7 @@
 package models
 import (
-		"time"
-		)
+"time"
+)
 type Gygg struct {
   GYGG_GUID 	string    	`xorm:" not null  pk VARCHAR(100)"`
   GYGG_BT   	string    	`xorm:"VARCHAR(255)"`
@@ -62,5 +62,5 @@ type Gygg struct {
   XGYY      	string    	`xorm:"TEXT"`       
   DK_JJ     	string    	`xorm:"TEXT"`       
   ZB_YZ     	string    	`xorm:"VARCHAR(50)"`
-  GYGG_NR   	          	`xorm:"LONGTEXT"`   
+  GYGG_NR   	string    	`xorm:"LONGTEXT"`   
 }

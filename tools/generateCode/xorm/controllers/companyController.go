@@ -5,7 +5,6 @@ import (
 	"../models"
 	"../utils"
 	"github.com/gin-gonic/gin"
-	"github.com/go-xorm/xorm"
 	_ "github.com/jinzhu/gorm/dialects/mysql"
 )
 

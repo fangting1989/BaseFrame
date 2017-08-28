@@ -1,7 +1,4 @@
 package models
-import (
-		"time"
-		)
 type Member struct {
   Member_ID 	int64     	`xorm:" not null  pk BIGINT(20)"`
   Enterprise_ID	string    	`xorm:"VARCHAR(100)"`

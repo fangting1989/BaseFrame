@@ -1,12 +1,12 @@
 package models
 import (
-		"time"
-		)
+"time"
+)
 type Cjgs struct {
   CJGS_GUID 	string    	`xorm:" not null  pk VARCHAR(100)"`
   GSBT      	string    	`xorm:"VARCHAR(200)"`
   JZRQ      	time.Time 	`xorm:"DATETIME(6)"`
-  GSNR      	          	`xorm:"LONGTEXT"`   
+  GSNR      	string    	`xorm:"LONGTEXT"`   
   XZQ_DM    	string    	`xorm:" not null VARCHAR(9)"`
   SBR       	string    	`xorm:"VARCHAR(50)"`
   XM_CJ     	float64   	`xorm:"DECIMAL(10,0)"`

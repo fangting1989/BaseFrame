@@ -1,7 +1,7 @@
 package models
 import (
-		"time"
-		)
+"time"
+)
 type Project struct {
   PROJECTID 	int64     	`xorm:" not null  pk BIGINT(20)"`
   XMMC      	string    	`xorm:"VARCHAR(100)"`

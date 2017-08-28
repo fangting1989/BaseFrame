@@ -1,7 +1,7 @@
 package models
 import (
-		"time"
-		)
+"time"
+)
 type Attachment struct {
   Attachment_id	int64     	`xorm:" not null  pk BIGINT(20)"`
   BUSINESS_TYPE	string    	`xorm:"VARCHAR(100)"`

@@ -119,6 +119,24 @@ func ConfigIntData(name string) int {
 	}
 }
 
+func ConfigBoolData(name string) bool {
+	cfg, err := config.ParseJsonFile("./config/appconfig.json")
+	if err != nil {
+		return false
+	}
+	nmode, err := cfg.String(name)
+	if err != nil {
+		return false
+	} else {
+		b, err := strconv.ParseBool(nmode)
+		if err != nil {
+			return false
+		} else {
+			return b
+		}
+	}
+}
+
 func ContextKeyValue(keyName string, c *gin.Context) string {
 	val, has := c.Get(keyName)
 	if !has {

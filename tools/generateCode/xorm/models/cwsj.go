@@ -1,12 +1,9 @@
 package models
-import (
-		"time"
-		)
 type Cwsj struct {
   CWSJ_ID   	int64     	`xorm:" not null  pk BIGINT(20)"`
   Company_ID	int64     	`xorm:"BIGINT(20)"` 
   QYMC      	string    	`xorm:"VARCHAR(100)"`
-  ND        	          	`xorm:"YEAR(4)"`    
+  ND        	string    	`xorm:"VARCHAR(4)"` 
   YYZSR     	float64   	`xorm:"DECIMAL(16,2)"`
   ZYYWSR    	float64   	`xorm:"DECIMAL(16,2)"`
   QTYYSR    	float64   	`xorm:"DECIMAL(16,2)"`

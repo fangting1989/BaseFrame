@@ -1,7 +1,4 @@
 package models
-import (
-		"time"
-		)
 type File struct {
   File_id   	int64     	`xorm:" not null  pk BIGINT(20)"`
   NAME      	string    	`xorm:"VARCHAR(500)"`

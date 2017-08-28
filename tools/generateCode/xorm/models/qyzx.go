@@ -1,7 +1,7 @@
 package models
 import (
-		"time"
-		)
+"time"
+)
 type Qyzx struct {
   QYZXID    	int64     	`xorm:" not null  pk BIGINT(20)"`
   Company_ID	int64     	`xorm:"BIGINT(20)"` 
@@ -9,7 +9,7 @@ type Qyzx struct {
   ZXBT      	string    	`xorm:"VARCHAR(250)"`
   ZXZBT     	string    	`xorm:"VARCHAR(250)"`
   ZXFBSJ    	time.Time 	`xorm:"DATE"`       
-  ZXNR      	          	`xorm:"MEDIUMTEXT"` 
+  ZXNR      	string    	`xorm:"MEDIUMTEXT"` 
   ZXFBR     	string    	`xorm:"VARCHAR(100)"`
   ZXLY      	string    	`xorm:"VARCHAR(100)"`
   ZXZT      	int       	`xorm:"TINYINT(4)"` 

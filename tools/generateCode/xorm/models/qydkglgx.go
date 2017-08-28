@@ -1,7 +1,7 @@
 package models
 import (
-		"time"
-		)
+"time"
+)
 type Qydkglgx struct {
   QYDKGLGXID	int64     	`xorm:" not null  pk BIGINT(20)"`
   Company_ID	int64     	`xorm:"BIGINT(20)"` 

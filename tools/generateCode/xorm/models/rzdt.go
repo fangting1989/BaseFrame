@@ -1,7 +1,7 @@
 package models
 import (
-		"time"
-		)
+"time"
+)
 type Rzdt struct {
   RZDTID    	int64     	`xorm:" not null  pk BIGINT(20)"`
   Company_ID	int64     	`xorm:"BIGINT(20)"` 

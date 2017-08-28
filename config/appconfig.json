@@ -1,8 +1,9 @@
 {
     "app":{
         "startport":8000,
-        "jwtmode":false,
-        "tokenExpires":5
+        "jwtmode":true,
+        "tokenExpires":5,
+        "sqlvalid":true
     },
     "mysql":{
         "host":"192.168.2.66:3306",

@@ -1,7 +1,4 @@
 package models
-import (
-		"time"
-		)
 type Cjgs_zd struct {
   CJGS_ZD_GUID	string    	`xorm:" not null  pk VARCHAR(100)"`
   CJGS_GUID 	string    	`xorm:"VARCHAR(100)"`

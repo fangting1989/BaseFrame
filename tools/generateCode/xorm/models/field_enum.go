@@ -1,7 +1,4 @@
 package models
-import (
-		"time"
-		)
 type Field_enum struct {
   FLD_ENUM_ID	int64     	`xorm:" not null  pk BIGINT(20)"`
   ENUM_GROUP_GUID	int64     	`xorm:"BIGINT(20)"` 

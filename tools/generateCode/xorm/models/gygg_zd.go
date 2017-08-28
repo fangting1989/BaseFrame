@@ -1,7 +1,7 @@
 package models
 import (
-		"time"
-		)
+"time"
+)
 type Gygg_zd struct {
   GYGG_ZD_GUID	string    	`xorm:" not null  pk VARCHAR(100)"`
   GYGG_GUID 	string    	`xorm:"VARCHAR(100)"`

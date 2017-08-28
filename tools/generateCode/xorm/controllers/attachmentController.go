@@ -5,7 +5,6 @@ import (
 	"../models"
 	"../utils"
 	"github.com/gin-gonic/gin"
-	"github.com/go-xorm/xorm"
 	_ "github.com/jinzhu/gorm/dialects/mysql"
 )
 
@@ -68,7 +67,7 @@ func attachmentUpdate(c *gin.Context) {
 	engine:= utils.GetDbConn("mysql",c)
 	var attachment models.Attachment
 	if c.BindJSON(&attachment) == nil {
-		affected, err := engine.Id(attachment.attachment_id).Update(attachment)
+		affected, err := engine.Id(attachment.Attachment_id).Update(attachment)
 		utils.CheckWebError(err, c)
 		if affected > 0 {
 			c.JSON(http.StatusOK, &utils.ResultObject{1, "操作成功", attachment, utils.ContextToken(c)})
@@ -85,7 +84,7 @@ func attachmentDel(c *gin.Context) {
 	engine := utils.GetDbConn("mysql",c)
 	var attachment models.Attachment
 	if c.Bind(&attachment) == nil {
-		affected, err := engine.Id(attachment.attachment_id).Delete(attachment)
+		affected, err := engine.Id(attachment.Attachment_id).Delete(attachment)
 		utils.CheckWebError(err, c)
 		if affected > 0 {
 			c.JSON(http.StatusOK, &utils.ResultObject{1, "操作成功", nil, utils.ContextToken(c)})

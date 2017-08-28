@@ -5,7 +5,6 @@ import (
 	"../models"
 	"../utils"
 	"github.com/gin-gonic/gin"
-	"github.com/go-xorm/xorm"
 	_ "github.com/jinzhu/gorm/dialects/mysql"
 )
 
@@ -68,7 +67,7 @@ func fileUpdate(c *gin.Context) {
 	engine:= utils.GetDbConn("mysql",c)
 	var file models.File
 	if c.BindJSON(&file) == nil {
-		affected, err := engine.Id(file.file_id).Update(file)
+		affected, err := engine.Id(file.File_id).Update(file)
 		utils.CheckWebError(err, c)
 		if affected > 0 {
 			c.JSON(http.StatusOK, &utils.ResultObject{1, "操作成功", file, utils.ContextToken(c)})
@@ -85,7 +84,7 @@ func fileDel(c *gin.Context) {
 	engine := utils.GetDbConn("mysql",c)
 	var file models.File
 	if c.Bind(&file) == nil {
-		affected, err := engine.Id(file.file_id).Delete(file)
+		affected, err := engine.Id(file.File_id).Delete(file)
 		utils.CheckWebError(err, c)
 		if affected > 0 {
 			c.JSON(http.StatusOK, &utils.ResultObject{1, "操作成功", nil, utils.ContextToken(c)})

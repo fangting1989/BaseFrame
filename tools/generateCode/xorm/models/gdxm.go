@@ -1,7 +1,7 @@
 package models
 import (
-		"time"
-		)
+"time"
+)
 type Gdxm struct {
   GD_GUID   	string    	`xorm:" not null VARCHAR(100)"`
   ZD_GUID   	string    	`xorm:"VARCHAR(100)"`

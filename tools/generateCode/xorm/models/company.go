@@ -1,7 +1,7 @@
 package models
 import (
-		"time"
-		)
+"time"
+)
 type Company struct {
   Company_ID	int64     	`xorm:" not null  pk BIGINT(20)"`
   Logo      	string    	`xorm:"VARCHAR(100)"`
@@ -32,4 +32,6 @@ type Company struct {
   SSLX      	string    	`xorm:"VARCHAR(100)"`
   YWLX      	string    	`xorm:"VARCHAR(100)"`
   CPLX      	string    	`xorm:"VARCHAR(100)"`
+  ZBXZ      	string    	`xorm:"VARCHAR(100)"`
+  ZBYZ      	string    	`xorm:"VARCHAR(100)"`
 }
